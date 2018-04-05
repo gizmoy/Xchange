@@ -6,50 +6,49 @@ Interpreter of simple programming language with currency types.
 Parsing visualizator can used to debugging and learning basic concepts of interpreters implementation. 
 Exchanges rates are downloaded from the Web.
 
-### BNF notation of grammar
+### BNF grammar notation
 
-`
-program ​= { functionDefinition } .
-
-functionDefinition ​= "function" id "(" parameters ")" statementBlock . 
-parameters ​= [ id { "," id } ] . 
-arguments ​= [ assignable [castOp] { "," assignable [castOp] } ] . 
-statementBlock​ = "{" { instructions } "}" . 
-instructions = ifStatement   | returnStatement | whileStatement |  
+<pre>
+  <b>program</b> ​= { functionDefinition } . 
+  <b>functionDefinition</b> ​= "function" id "(" parameters ")" statementBlock . 
+  <b>parameters</b> ​= [ id { "," id } ] . 
+  <b>arguments</b> ​= [ assignable [castOp] { "," assignable [castOp] } ] . 
+  <b>statementBlock</b>​ = "{" { instructions } "}" . 
+  <b>instructions</b> = ifStatement   | returnStatement | whileStatement |  
                initStatement | assignStatement | functionCall   |    
                breakCommand  | continueCommand | statementBlock 
 
 
-ifStatement ​= "if" "(" generalCond ")" statementBlock [ "else" statementBlock]. 
-returnStatement ​= "return" assignable ";" . 
-whileStatement​ = "while" "(" generalCond ")" statementBlock . 
-initStatement​ = type id [ assignmentOp assignable ] ";" . 
-assignStatement​ = id assignmentOp assignable ";" . 
-functionCall ​= id "(" arguments ")" ";" .
-breakCommand = "break" ";" .
-continueCommand = "continue" ";" . 
+  <b>ifStatement</b> ​= "if" "(" generalCond ")" statementBlock [ "else" statementBlock]. 
+  <b>returnStatement</b> ​= "return" assignable ";" . 
+  <b>whileStatement​</b> = "while" "(" generalCond ")" statementBlock . 
+  <b>initStatement​</b> = type id [ assignmentOp assignable ] ";" . 
+  <b>assignStatement​</b> = id assignmentOp assignable ";" . 
+  <b>functionCall</b> ​= id "(" arguments ")" ";" .
+  <b>breakCommand</b> = "break" ";" .
+  <b>continueCommand</b> = "continue" ";" . 
 
-assignable ​= functionCall [ castOp ] | generalExpr .
-generalExpr ​= multiplicativeExpr {additiveOp multiplicativeExpr} [castOp].
-multiplicativeExpr ​= baseExpr { multiplicativeOp baseExpr } . 
-baseExpr​ = ( number | castableId | nestedExpr ) .
-nestedExpr ​= "(" generalExpr ")" .
+  <b>assignable</b> ​= functionCall [ castOp ] | generalExpr .
+  <b>generalExpr</b> ​= multiplicativeExpr {additiveOp multiplicativeExpr} [castOp].
+  <b>multiplicativeExpr</b> ​= baseExpr { multiplicativeOp baseExpr } . 
+  <b>baseExpr</b>​ = ( number | castableId | nestedExpr ) .
+  <b>nestedExpr</b> ​= "(" generalExpr ")" .
 
-generalCond ​= andCond { orOp andCond } . 
-andCond​ = equalityCond { andOp equalityCond } . 
-equalityCond​ = relationalCond { equalityOp relationalCond } . 
-relationalCond ​= baseCond { relationalOp​ baseCond } . 
-baseCond​ = [ negationOp ] ( nestedCond | castableId | number ) . 
-nestedCond​ = "(" generalCond ")" . 
+  <b>generalCond</b> ​= andCond { orOp andCond } . 
+  <b>andCond</b>​ = equalityCond { andOp equalityCond } . 
+  <b>equalityCond​</b> = relationalCond { equalityOp relationalCond } . 
+  <b>relationalCond</b> ​= baseCond { relationalOp​ baseCond } . 
+  <b>baseCond​</b> = [ negationOp ] ( nestedCond | castableId | number ) . 
+  <b>nestedCond​</b> = "(" generalCond ")" . 
 
-negationOp = "!" . 
-assignmentOp ​= "=" . 
-orOp​= "||" . 
-andOp ​= "&&" . 
-equalityOp​ = "==" | "!=" . 
-relationalOp​ = "<" | ">" | "<=" | ">=" . 
-additiveOp ​= "+" | "-­" . 
-`
+  <b>negationOp</b> = "!" . 
+  <b>assignmentOp</b> ​= "=" . 
+  <b>orOp​</b> = "||" . 
+  <b>andOp</b> ​= "&&" . 
+  <b>equalityOp​</b> = "==" | "!=" . 
+  <b>relationalOp</b>​ = "<" | ">" | "<=" | ">=" . 
+  <b>additiveOp</b> ​= "+" | "-­" .   
+</pre>
 
 ### Visualization of parsing
 
@@ -58,7 +57,7 @@ Parsing of correct script and incorrect one :
 
 ### Examples of correct scripts
 
-`
+<pre>
 function factorial(n)
 {
 	if (n == 1)
@@ -112,6 +111,6 @@ function main()
 
 	return 0;
 }
-`
+</pre>
 
 
